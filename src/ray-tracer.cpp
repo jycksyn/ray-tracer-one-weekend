@@ -13,7 +13,7 @@ int main() {
             int ir = int(255.99 * r);
             int ig = int(255.99 * g);
             int ib = int(255.99 * b);
-            printf("%d %d %d ", ir, ig, ib);
+            cout << ir << " " << ig << " " << ib << " "; 
         }
     }
 }
