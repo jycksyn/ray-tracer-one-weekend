@@ -7,4 +7,5 @@ include_directories(.)
 include_directories(src)
 
 add_executable(ray_tracer_one_weekend
-        src/ray-tracer.cpp)
+        src/ray-tracer.cpp
+        src/ray.h)
