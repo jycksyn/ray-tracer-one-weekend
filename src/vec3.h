@@ -18,7 +18,7 @@ class vec3 {
     
     inline const vec3& operator+() const { return *this; }
     inline vec3 operator-() const { return vec3(-e[0], -e[1], -e[2]); }
-    inline float operator[](int i) const { return e(i); }
+    inline float operator[](int i) const { return e[i]; }
     
     inline vec3& operator+=(const vec3 &v2);
     inline vec3& operator-=(const vec3 &v2);
@@ -43,14 +43,14 @@ class vec3 {
     float e[3];
 };
 
-int std::istream& operator>>(std:istream &is, vec3 &t) {
+inline std::istream& operator>>(std::istream &is, vec3 &t) {
   is >> t.e[0] >> t.e[1] >> t.e[2];
   return is;
 }
 
-int std::ostream& operator>>(std:istream &os, vec3 &t) {
+inline std::ostream& operator>>(std::ostream &os, vec3 &t) {
   os << t.e[0] << " " << t.e[1] << " " << t.e[2];
-  return is;
+  return os;
 }
 
 inline vec3 operator+(const vec3 &v1, const vec3 &v2) {
@@ -82,7 +82,7 @@ inline vec3 operator/(const vec3 &v1, float t) {
 }
 
 inline float dot(const vec3 &v1, const vec3 &v2) {
-    return v1.e[0] * v2.e[0] + v1.e[1] * v2.e[1] + v1.e[3] * v2.e[3]
+    return v1.e[0] * v2.e[0] + v1.e[1] * v2.e[1] + v1.e[3] * v2.e[3];
 }
 
 inline vec3 cross(const vec3 &v1, const vec3 &v2) {

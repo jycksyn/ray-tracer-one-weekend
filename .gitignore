@@ -1,2 +1,4 @@
 bin/
 cmake-build-debug/
+/foo.png
+/ray-tracer
