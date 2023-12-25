@@ -1,6 +1,7 @@
 #ifndef RAY_TRACER_ONE_WEEKEND_VECH
 #define RAY_TRACER_ONE_WEEKEND_VECH
 
+#include<vector>
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
@@ -141,6 +142,23 @@ inline vec3& vec3::operator/=(const float k) {
 
 inline vec3 unit_vector(vec3 v) {
     return v / v.length();
+}
+
+vec3 random_in_unit_sphere() {
+    vec3 random(
+            static_cast<float>(drand48()),
+            static_cast<float>(drand48()),
+            static_cast<float>(drand48())
+            );
+    random *= 2;
+    random += vec3(-1, -1, -1);
+    random.make_unit_vector();
+    random *= static_cast<float>(drand48());
+    return random;
+}
+
+vec3 reflect(const vec3 &v, const vec3 &n) {
+    return v - 2*dot(v, n)*n;
 }
 
 #endif

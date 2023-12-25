@@ -12,4 +12,7 @@ add_executable(ray_tracer_one_weekend
         src/hitable.h
         src/sphere.h
         src/hitablelist.h
-        src/camera.h)
+        src/camera.h
+        src/material.h
+        src/lambertian.h
+        src/metal.h)
