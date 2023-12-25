@@ -8,4 +8,8 @@ include_directories(src)
 
 add_executable(ray_tracer_one_weekend
         src/ray-tracer.cpp
-        src/ray.h)
+        src/ray.h
+        src/hitable.h
+        src/sphere.h
+        src/hitablelist.h
+        src/camera.h)

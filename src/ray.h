@@ -14,9 +14,9 @@ public:
         this->A = origin;
         this->B = direction;
     }
-    vec3 origin() const { return A; }
-    vec3 direction() const { return B; }
-    vec3 point_at(float t) const { return A + t*B; }
+    [[nodiscard]] vec3 origin() const { return A; }
+    [[nodiscard]] vec3 direction() const { return B; }
+    [[nodiscard]] vec3 point_at(float t) const { return A + t*B; }
 
     vec3 A;
     vec3 B;
