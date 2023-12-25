@@ -15,4 +15,5 @@ add_executable(ray_tracer_one_weekend
         src/camera.h
         src/material.h
         src/lambertian.h
-        src/metal.h)
+        src/metal.h
+        src/textured.h)

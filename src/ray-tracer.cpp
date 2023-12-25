@@ -10,6 +10,7 @@
 #include "lambertian.h"
 #include "metal.h"
 #include "vec3.h"
+#include "textured.h"
 
 using namespace std;
 
@@ -36,17 +37,22 @@ vec3 get_color(const ray &r, hitable *world) {
 }
 
 int main() {
-    int nx = 200;
-    int ny = 100;
+    int nx = 500;
+    int ny = 250;
     int rays_per_pixel = 100;
 
     camera cam;
 
     hitable * list [3];
-    list[0] = new sphere(vec3(0.5, 0.0, -1.0), 0.5f, std::make_shared<lambertian>(vec3(0.5, 0.5, 0.5)));
-    list[1] = new sphere(vec3(-0.5, 0.0, -1.0), 0.5f, std::make_shared<metal>(vec3(0.75, 0, 0.75)));
-    list[2] = new sphere(vec3(0.0, -100.5, -1.0), 100.0, std::make_shared<lambertian>(vec3(0.5, 0, 0)));
-    hitable *world = new hitable_list(list, 3);
+    vec3 c1(0, 0.0, -1.0);
+
+    int width, height, channels;
+    uint8_t * pp = stbi_load("map.jpg", &width, &height, &channels, 3);
+
+    list[0] = new sphere(c1, 0.5f, std::make_shared<matte_textured>(c1, width, height, channels, &pp));
+//    list[1] = new sphere(vec3(-0.5, 0.0, -1.0), 0.5f, std::make_shared<metal>(vec3(0.75, 0, 0.75)));
+    list[1] = new sphere(vec3(0.0, -100.5, -1.0), 100.0, std::make_shared<matte_color>(vec3(0.5, 0, 0)));
+    hitable *world = new hitable_list(list, 2);
 
     vector<char> pixels;
     for (int y = ny - 1; y >= 0; y--) {
