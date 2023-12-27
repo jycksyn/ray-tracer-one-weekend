@@ -10,7 +10,7 @@
 class camera {
 public:
     camera() {
-        lower_left = vec3(-2.0, -1.0, -1.0);
+        lower_left = vec3(-2.0, -1.0, -1.5);
         horizontal = vec3(4.0, 0.0, 0.0);
         vertical = vec3(0.0, 2.0, 0.0);
         o = vec3(0.0, 0.0, 0.0);

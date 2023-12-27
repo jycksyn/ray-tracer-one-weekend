@@ -161,5 +161,16 @@ vec3 reflect(const vec3 &v, const vec3 &n) {
     return v - 2*dot(v, n)*n;
 }
 
+bool refract(const vec3 &v, const vec3 &n, float index, vec3 &refracted) {
+    vec3 u = unit_vector(v);
+    float c = dot(u, n);
+    float discriminant = 1 - index*index*(1 - c*c);
+    if (discriminant > 0) {
+        refracted = index*(u - c*n) - sqrt(discriminant) * n;
+        return true;
+    }
+    return false;
+}
+
 #endif
 
