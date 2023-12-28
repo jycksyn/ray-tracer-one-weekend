@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/jpkubin/c_playground/ray-tracer",
+  "command": "/usr/bin/c++  -I/home/jpkubin/c_playground/ray-tracer/. -I/home/jpkubin/c_playground/ray-tracer/src -std=gnu++14 -o CMakeFiles/ray_tracer_one_weekend.dir/src/ray-tracer.cpp.o -c /home/jpkubin/c_playground/ray-tracer/src/ray-tracer.cpp",
+  "file": "/home/jpkubin/c_playground/ray-tracer/src/ray-tracer.cpp"
+}
+]

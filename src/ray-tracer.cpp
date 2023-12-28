@@ -1,4 +1,4 @@
-#include <memory>
+#include<memory>
 #include<vector>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -48,7 +48,12 @@ int main() {
     vec3 c1(0.5, 0.0, -1.0);
 
     int width, height, channels;
-    uint8_t * pp = stbi_load("map.jpg", &width, &height, &channels, 3);
+    uint8_t * pp = stbi_load("map.JPG", &width, &height, &channels, 3);
+
+    if (pp == nullptr) {
+      cout << "Image not found" << endl;
+      return 1;
+    }
 
     list[0] = new sphere(c1, 0.5f, std::make_shared<matte_textured>(c1, width, height, channels, &pp));
     list[1] = new sphere(vec3(-0.5, 0.0, -1.0), 0.5f, std::make_shared<dielectric>( 1.5));

@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.22)
 project(ray_tracer_one_weekend)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 
 include_directories(.)
 include_directories(src)

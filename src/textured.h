@@ -7,6 +7,8 @@
 
 #include"lambertian.h"
 #include "sphere.h"
+#include <cmath>
+#include <cstdint>
 
 class matte_textured : public lambertian {
 public:
@@ -28,10 +30,10 @@ public:
         horizontal /= 6.2;
 
         // Cylindrical Projection
-        float vertical = (-oc.y() + 1.0f) / 2.0f;
+//        float vertical = (-oc.y() + 1.0f) / 2.0f;
 
         // Spherical Coordinates or Mercator Projection
-//      float vertical = acosf(oc.y()) / M_PIf;
+      float vertical = acosf(oc.y()) / M_PIf;
 
         int size = width * channels * height;
 

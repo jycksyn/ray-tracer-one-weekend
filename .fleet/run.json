@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "command",
+            "name": "Build",
+            "program": "g++",
+            "args": ["$PROJECT_DIR$/src/ray-tracer.cpp", "-o", "$PROJECT_DIR$/ray-tracer"],
+        },
+        {
+            "type": "command",
+            "name": "Run",
+            "dependsOn": ["Build"],
+            "program": "$PROJECT_DIR$/ray-tracer",
+        },
+    ]
+}
