@@ -24,11 +24,11 @@ vec3 bg_color(const ray& r) {
     return (1.0f - t) * WHITE() + t * LIGHT_BLUE();
 }
 
-vec3 get_color(const ray &r, hitable *world) {
+vec3 get_color(const ray &r, const hitable & world) {
     hit_record rec;
     ray my_ray = r;
     vec3 attenuation(1,1,1);
-    for (int depth = 0; world->hit(my_ray, 0.001, MAXFLOAT, rec) && depth < 50; depth++) {
+    for (int depth = 0; world.hit(my_ray, 0.001, MAXFLOAT, rec) && depth < 50; depth++) {
         vec3 a;
         if (rec.mat_ptr->scatter(my_ray, rec, a, my_ray)) {
             attenuation *= a;
@@ -44,22 +44,21 @@ int main() {
 
     camera cam;
 
-    hitable * list [4];
+    vector<shared_ptr<hitable>> obj_list;
     vec3 c1(0.5, 0.0, -1.0);
 
     int width, height, channels;
-    uint8_t * pp = stbi_load("map.JPG", &width, &height, &channels, 3);
+    uint8_t * pp = stbi_load("./map.JPG", &width, &height, &channels, 3);
 
     if (pp == nullptr) {
       cout << "Image not found" << endl;
-      return 1;
     }
 
-    list[0] = new sphere(c1, 0.5f, std::make_shared<matte_textured>(c1, width, height, channels, &pp));
-    list[1] = new sphere(vec3(-0.5, 0.0, -1.0), 0.5f, std::make_shared<dielectric>( 1.5));
-    list[2] = new sphere(vec3(-0.5, 0.0, -1.0), -0.45f, std::make_shared<dielectric>( 1.5));
-    list[3] = new sphere(vec3(0.0, -100.5, -1.0), 100.0, std::make_shared<matte_color>(vec3(0.5, 0, 0)));
-    hitable *world = new hitable_list(list, 4);
+    obj_list.push_back(make_shared<sphere>(c1, 0.5f, std::make_shared<matte_textured>(c1, width, height, channels, &pp)));
+    obj_list.push_back(make_shared<sphere>(vec3(-0.5, 0.0, -1.0), 0.5f, std::make_shared<dielectric>( 1.5)));
+    obj_list.push_back(make_shared<sphere>(vec3(-0.5, 0.0, -1.0), -0.45f, std::make_shared<dielectric>( 1.5)));
+    obj_list.push_back(make_shared<sphere>(vec3(0.0, -100.5, -1.0), 100.0, std::make_shared<matte_color>(vec3(0.5, 0, 0))));
+    hitable_list<typeof obj_list.begin()> world(obj_list.begin(), obj_list.end());
 
     vector<char> pixels;
     for (int y = ny - 1; y >= 0; y--) {
