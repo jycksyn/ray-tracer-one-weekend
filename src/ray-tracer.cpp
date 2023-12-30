@@ -38,11 +38,11 @@ vec3 get_color(const ray &r, const hitable & world) {
 }
 
 int main() {
-    int nx = 200;
-    int ny = 100;
-    int rays_per_pixel = 500;
+    int nx = 500;
+    int ny = 250;
+    int rays_per_pixel = 100;
 
-    camera cam;
+    camera cam({0,0,0}, {0, 0, -1}, {0, 1, 0}, 90, float(nx) / float(ny), 1);
 
     vector<shared_ptr<hitable>> obj_list;
     vec3 c1(0.5, 0.0, -1.0);
@@ -55,8 +55,9 @@ int main() {
     }
 
     obj_list.push_back(make_shared<sphere>(c1, 0.5f, std::make_shared<matte_textured>(c1, width, height, channels, &pp)));
-    obj_list.push_back(make_shared<sphere>(vec3(-0.5, 0.0, -1.0), 0.5f, std::make_shared<dielectric>( 1.5)));
-    obj_list.push_back(make_shared<sphere>(vec3(-0.5, 0.0, -1.0), -0.45f, std::make_shared<dielectric>( 1.5)));
+//    obj_list.push_back(make_shared<sphere>(vec3(-0.5, 0.0, -1.0), 0.5f, std::make_shared<dielectric>( 1.5)));
+//    obj_list.push_back(make_shared<sphere>(vec3(-0.5, 0.0, -1.0), 0.5f, std::make_shared<dielectric>( 1.5)));
+    obj_list.push_back(make_shared<sphere>(vec3(-0.5, 0.0, -1.0), 0.5f, std::make_shared<metal>(vec3(0.8,0.6,0.2), 0)));
     obj_list.push_back(make_shared<sphere>(vec3(0.0, -100.5, -1.0), 100.0, std::make_shared<matte_color>(vec3(0.5, 0, 0))));
     hitable_list<typeof obj_list.begin()> world(obj_list.begin(), obj_list.end());
 
@@ -77,5 +78,5 @@ int main() {
         }
     }
 
-    stbi_write_png("u.png", nx, ny, 3, &pixels[0], 3 * nx);
+    stbi_write_png("test.png", nx, ny, 3, &pixels[0], 3 * nx);
 }

@@ -10,7 +10,7 @@ class vec3 {
   public:
     vec3 () = default;
     vec3(float e0, float e1, float e2) { e[0] = e0; e[1] = e1; e[2] = e2; }
-    
+
     [[nodiscard]] inline float x() const { return e[0]; }
     [[nodiscard]] inline float y() const { return e[1]; }
     [[nodiscard]]  inline float z() const { return e[2]; }
@@ -18,11 +18,11 @@ class vec3 {
     [[nodiscard]] inline float r() const { return e[0]; }
     [[nodiscard]] inline float g() const { return e[1]; }
     [[nodiscard]] inline float b() const { return e[2]; }
-    
+
     inline const vec3& operator+() const { return *this; }
     inline vec3 operator-() const { return {-e[0], -e[1], -e[2]}; }
     inline float operator[](int i) const { return e[i]; }
-    
+
     inline vec3& operator+=(const vec3 &v2);
     inline vec3& operator-=(const vec3 &v2);
     inline vec3& operator*=(const vec3 &v2);
@@ -37,12 +37,12 @@ class vec3 {
     [[nodiscard]] inline float squared_length() const {
       return e[0]*e[0] + e[1]*e[1] + e[2]*e[2];
     }
-    
+
     inline void make_unit_vector() {
       float k = 1.0f / this->length();
       e[0] *= k; e[1] *= k; e[2] *=k;
     }
-    
+
     float e[3] {};
 };
 

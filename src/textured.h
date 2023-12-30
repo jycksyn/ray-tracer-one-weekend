@@ -23,17 +23,18 @@ public:
         vec3 oc = rec.p - center;
         oc.make_unit_vector();
         float horizontal = atanf(-oc.z() / oc.x());
-        if (horizontal < 0)
-            horizontal += 3.14;
-        if (horizontal < 0)
-            horizontal += 3.14;
-        horizontal /= 6.2;
+        horizontal /= 2 * M_PIf;
+        if (oc.x() < 0) {
+            horizontal += 0.5;
+        } else if (oc.z() > 0) {
+            horizontal += 1;
+        }
 
         // Cylindrical Projection
-//        float vertical = (-oc.y() + 1.0f) / 2.0f;
+        float vertical = (-oc.y() + 1.0f) / 2.0f;
 
-        // Spherical Coordinates or Mercator Projection
-      float vertical = acosf(oc.y()) / M_PIf;
+        // Spherical Coordinates
+//      float vertical = acosf(oc.y()) / M_PIf;
 
         int size = width * channels * height;
 
